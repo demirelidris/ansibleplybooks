@@ -1,0 +1,5 @@
+---
+- name: netstat kurulumu
+  yum:
+   name: net-tools
+   state: present

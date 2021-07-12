@@ -1,0 +1,36 @@
+---
+
+- name: check file path
+  stat:
+    path: "{{ file_path }}"
+  register: fp
+
+- debug:
+    msg: "{{ fp }}"
+
+- name: docker version 
+  shell: "docker -v"
+  register: dv
+  when: fp.stat.executable is defined and fp.stat.executable
+
+- name: docker version gosterme
+  debug:
+    msg: "{{ dv.stdout_lines }}"
+  when: fp.stat.executable is defined and fp.stat.executable
+ 
+- name: check kubectl path
+  stat:
+    path: "{{ kube_path }}"
+  register: kp
+
+- debug:
+    msg: "{{ kp }}"
+
+- name: kubectl version 
+  shell: "kubectl version"
+  register: kv
+  when: kp.stat.executable is defined and kp.stat.executable
+
+- name: kubectl version gosterme
+  debug:
+    msg: "{{ kv.stdout_lines }}"

@@ -1,0 +1,31 @@
+---
+
+- name: Install tcpdump
+  yum:
+    name: tcpdump
+    update_cache: yes
+
+- name: Create log folder
+  file:
+    path: /var/log/tcpdump
+    state: directory
+
+#- name: Install apparmor utilities
+ # yum:
+  #  name: apparmor-utils
+
+#- name: Swith to 'complain' on tcpdump
+ # shell: aa-complain /usr/sbin/tcpdump
+  #changed_when: false
+
+- name: Install the systemd service
+  template:
+    src: tcpdump.service.j2
+    dest: /etc/systemd/system/tcpdump.service
+  notify: restart tcpdump
+
+- name: Start tcpdump
+  service:
+    name: tcpdump.service
+    state: started
+    enabled: yes

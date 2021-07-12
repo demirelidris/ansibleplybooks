@@ -1,0 +1,23 @@
+- hosts: packet
+  become: yes
+  roles:
+    - role: rsyslog
+  tags: rsys
+
+- hosts: server
+  become: yes
+  roles:
+    - role: tcpdump
+  tags: tcp
+
+- hosts: packet
+  become: yes
+  roles:
+    - role: netstat
+  tags: nstat
+
+- hosts: kubernetes
+  become: yes
+  roles:
+    - role: version
+  tags: vrs

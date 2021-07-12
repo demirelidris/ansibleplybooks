@@ -1,0 +1,8 @@
+---
+- name: install rsyslog
+  yum:
+   name: rsyslog
+   state: present
+ 
+- name: rsyslog restart
+  service: "name=rsyslog state=restarted"

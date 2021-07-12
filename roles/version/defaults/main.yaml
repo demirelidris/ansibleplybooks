@@ -1,0 +1,4 @@
+---
+volume_path: "/dev/sda"
+file_path: "/usr/bin/docker"
+kube_path: "/usr/bin/kubectl"
